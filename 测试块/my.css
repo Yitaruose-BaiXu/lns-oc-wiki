@@ -1,0 +1,44 @@
+.cs{
+    background-color: rgb(129, 129, 129);
+    width: 200px;
+    height: 200px;
+}
+.cd{
+    display: flex;
+    border: 10px solid red;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+.tab{
+    width: 800px;
+    margin: 100px auto;
+}
+.tab_list{
+    height: 40px;
+    border: 10px solid #858585;
+    border-color: #f1f1f1;
+}
+.tab_list li {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    padding: 0 20px;
+    cursor: pointer;
+}
+.tab_list .current {
+    background-color: red;
+    color: #fff;
+}
+.item {
+    display: none;
+}

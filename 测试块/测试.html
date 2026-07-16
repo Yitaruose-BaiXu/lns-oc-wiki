@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="my.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cd">
+    <div class="cs">1</div>
+    <div class="cs">2</div>
+    <div class="cs">3</div>
+    <div class="cs">4</div>
+    <div class="cs">5</div>
+    </div>
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current">113344</li>
+                <li class="1">223334</li>
+                <li class="2">555443</li>
+                <li class="3">234233</li>
+                <li class="4">234244</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display: block;">
+                这是石山
+            </div>
+            <div class="item">
+                这是内容
+            </div>
+            <div class="item">
+                这是乱码
+            </div>
+            <div class="item">
+                这是文本
+            </div>
+            <div class="item">
+                这是乃龙
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var lis = document.querySelectorAll('li')
+    var items = document.querySelectorAll('.item')
+    for(var i = 0;i>lis.length;i++){
+        lis[i].setAttribute('index',i)
+        lis[i].onclick = function(){
+            for(var i = 0;i < lis.length;i++){
+                lis[i].className = ''
+        }
+        this.className = 'current'
+        for(var i = 0;i < ltems.length;i++){
+                items[i].style.display = 'none'
+        }
+        items[this.getAttribute('index')].style.display = 'block'
+    }
+    }
+</script>
+
+</html>
