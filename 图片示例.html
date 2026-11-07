@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="凉凝霜 OC 档案库的图片使用说明：如何给角色、武器、物品添加图片。">
+    <link rel="stylesheet" href="me.css">
+    <title>图片使用说明 · 凉凝霜的oc网站</title>
+</head>
+<body>
+    <div class="biaoti">
+        <h3><a href="index.html">oc数据库</a></h3><br>
+        图片使用说明<br>
+        把图片放进 img/ 文件夹，按页面路径命名，就会自动出现<br>
+        本页随时可以删除，不影响网站
+    </div>
+    <hr>
+    <div class="beijing"><br>
+        <ul class="daohang">
+            <li><a href="index.html">角色</a></li>
+            <li><a href="wuqi.html">武器</a></li>
+            <li><a href="shengyiwu.html">圣遗物</a></li>
+            <li><a href="wupin.html">物品</a></li>
+        </ul>
+
+        <div class="jieshao">
+            <div class="jichuxingxi"><h3>一、最省事的办法：按路径命名</h3></div>
+            <div class="jineng"><h4>
+                网站里已经建好 <b>img</b> 文件夹。只要图片的「相对路径」和页面一致，就会自动显示，不用改任何代码：<br>
+                <br>
+                角色卡「凉凝霜」对应 jueseku/liangningshuang.html，那么图片放成：<br></h4>
+                <pre class="codewen">img/jueseku/liangningshuang.jpg   → 角色列表卡片缩略图 + 角色页立绘
+img/wuqi/cangfeng.png             → 武器「藏锋」的卡片缩略图
+img/wupin/menglinghe.webp         → 物品「梦灵核」的卡片缩略图</pre>
+                <h4>扩展名支持 jpg / jpeg / png / webp，程序会自动按这个顺序去找，所以写路径时<b>不需要写后缀</b>。<br><br>
+                列表卡片会自动按链接文件名找图；详情页的大图（立绘）用下面第二种写法。</h4>
+            </div>
+        </div>
+
+        <div class="jieshao">
+            <div class="jichuxingxi"><h3>二、在页面里预留图片位</h3></div>
+            <div class="jineng"><h4>
+                在想要放图片的位置粘一段这样的代码，就得到一个图片位：</h4>
+                <pre class="codewen">&lt;!-- 3:4 竖图（立绘），写不写后缀都行 --&gt;
+&lt;figure class="tupian tupian-gao"
+        data-tu="img/jueseku/liangningshuang"
+        data-shuoming="凉凝霜 · 立绘"&gt;&lt;/figure&gt;
+
+&lt;!-- 16:9 横图（默认比例） --&gt;
+&lt;figure class="tupian" data-tu="img/shili/heng-demo"&gt;&lt;/figure&gt;
+
+&lt;!-- 1:1 方图 --&gt;
+&lt;figure class="tupian tupian-fang" data-tu="img/shili/fang-demo"&gt;&lt;/figure&gt;</pre>
+                <h4>data-shuoming 是图片下方（图内底部）的说明文字，可以删掉。<br>
+                图片还没放进去时，会显示一个虚线占位框，排版不会乱；放进图片刷新页面就自动出现。</h4>
+            </div>
+        </div>
+
+        <div class="jieshao">
+            <div class="jichuxingxi"><h3>三、实际效果（点图片可看大图）</h3></div>
+            <div class="jineng"><h4>
+                下面三张是示例图，最后一个是「还没放图片」的占位状态。<br>
+                点开大图后：Esc 关闭，← → 切换上一张 / 下一张。</h4>
+            </div>
+        </div>
+
+        <div class="hualang">
+            <figure class="tupian tupian-gao" data-tu="img/shili/lifan-demo" data-shuoming="3:4 · 立绘 / 竖图"></figure>
+            <figure class="tupian" data-tu="img/shili/heng-demo" data-shuoming="16:9 · 横图 / 场景"></figure>
+            <figure class="tupian tupian-fang" data-tu="img/shili/fang-demo" data-shuoming="1:1 · 方图 / 图标"></figure>
+            <figure class="tupian tupian-fang" data-tu="img/shili/wei-shangchuan" data-kong="待添加图片"></figure>
+        </div>
+
+        <div class="jieshao">
+            <div class="jichuxingxi"><h3>四、一张大图 + 一排小图（图墙）</h3></div>
+            <div class="jineng"><h4>
+                角色页可以先放一张立绘，再放一排设定图 / 截图：</h4>
+                <pre class="codewen">&lt;figure class="tupian tupian-gao lifan" data-tu="img/jueseku/liangningshuang"&gt;&lt;/figure&gt;
+
+&lt;div class="hualang"&gt;
+    &lt;figure class="tupian tupian-fang" data-tu="img/jueseku/liangningshuang-1"&gt;&lt;/figure&gt;
+    &lt;figure class="tupian tupian-fang" data-tu="img/jueseku/liangningshuang-2"&gt;&lt;/figure&gt;
+    &lt;figure class="tupian tupian-fang" data-tu="img/jueseku/liangningshuang-3"&gt;&lt;/figure&gt;
+&lt;/div&gt;</pre>
+                <h4>lifan 会让立绘居中、限制宽度；hualang 会自动换行排列，手机上也正常。</h4>
+            </div>
+        </div>
+
+        <div class="jieshao">
+            <div class="jichuxingxi"><h3>五、给卡片配缩略图</h3></div>
+            <div class="jineng"><h4>
+                列表里的卡片默认按链接自动找图（见第一条），也可以在卡片上直接写 data-tu 指定任意图片。<br>
+                图片会自动铺在卡片背景上，并压一层渐变，保证名字看得清。下面两张是带图的，第三张是没有图的普通卡片：</h4>
+                <pre class="codewen">&lt;div class="gejian7" data-tu="img/jueseku/liangningshuang"&gt;
+    &lt;a href="jueseku/liangningshuang.html"&gt;5★┃凉凝霜&lt;/a&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <div class="gezi">
+            <div class="gejian7" data-tu="img/shili/ka-demo"><a href="index.html">5★┃凉凝霜</a></div>
+            <div class="daojv5" data-tu="img/shili/ka-demo"><a href="index.html">5★┃藏锋</a></div>
+            <div class="gejian"><a href="index.html">？★┃没图也正常</a></div>
+        </div>
+
+        <div class="jieshao">
+            <div class="jichuxingxi"><h3>六、几个小提示</h3></div>
+            <div class="jineng"><h4>
+                · 图片建议宽度不超过 1600px，格式用 jpg 或 webp，体积小、打开快；<br>
+                · 文件名不要有空格，用英文或拼音（例如 liangningshuang-1.jpg），中文名在部分浏览器里会失效；<br>
+                · 同一张图可以重复用在多个位置，但同一个路径只会加载一次；<br>
+                · 想改配色，只需要改 me.css 最上面的 :root 里的颜色变量；<br>
+                · 本页（图片示例.html）看完可以删掉，删掉后 index.html 页脚的「图片使用说明」链接也要一起删掉。</h4>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="dibu">
+        米游社：凉凝霜
+        <br>
+        <a class="weibu-lianjie" href="index.html">← 回到首页</a>
+    </div>
+<script src="site.js" defer></script>
+</body>
+</html>
