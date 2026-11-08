@@ -404,6 +404,78 @@ hr {
     color: inherit;
 }
 
+/* ------------------------------ 成就列表 ------------------------------ */
+.gezi.chengjiu-list {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 14px;
+    margin-bottom: 26px;
+}
+
+.chengjiu-ka {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 108px;
+    padding: 18px 20px;
+    border: 1px solid rgba(236, 199, 124, .22);
+    border-radius: var(--radius);
+    background-color: rgba(255, 255, 255, .035);
+    background-image: linear-gradient(158deg, rgba(236, 199, 124, .12), rgba(255, 255, 255, .015) 62%);
+    color: var(--text);
+    text-decoration: none;
+    transition: transform .3s cubic-bezier(.2, .7, .2, 1),
+        border-color .3s ease, box-shadow .3s ease;
+}
+
+.chengjiu-ka:hover {
+    transform: translateY(-4px);
+    border-color: rgba(236, 199, 124, .55);
+    box-shadow: 0 26px 42px -30px rgba(0, 0, 0, .95),
+        0 0 30px -16px rgba(236, 199, 124, .55);
+}
+
+.chengjiu-ka .chengjiu-ming {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: .06em;
+    color: #f4f9ff;
+}
+
+.chengjiu-ka .chengjiu-ming::before {
+    content: "✦";
+    margin-right: 8px;
+    color: var(--term, #ecc77c);
+    font-size: 13px;
+    vertical-align: 2px;
+}
+
+.chengjiu-ka .chengjiu-jl {
+    font-size: 12px;
+    letter-spacing: .1em;
+    color: var(--text-3);
+    transition: color .25s ease;
+}
+
+.chengjiu-ka:hover .chengjiu-jl {
+    color: var(--term, #ecc77c);
+}
+
+.chengjiu-kong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 108px;
+    padding: 18px;
+    border: 1px dashed rgba(127, 217, 255, .26);
+    border-radius: var(--radius);
+    background-color: rgba(5, 11, 20, .25);
+    color: var(--text-3);
+    font-size: 13px;
+    letter-spacing: .16em;
+}
+
 /* ------------------------------ 子标签（.konggezi） ------------------------------ */
 .konggezi {
     display: inline-flex;
@@ -611,6 +683,19 @@ body[data-xing="1"] .jl-v { --jl: #cfd9e6; }
     color: var(--term, #ecc77c);
     font-weight: 600;
     text-shadow: 0 0 14px rgba(236, 199, 124, .18);
+}
+
+/* 元素术语：与 .gejianN 卡片同色（1风 2岩 3雷 4草 5水 6火 7冰） */
+.oc-term[data-elem="feng"] { --term: #5ee6b6; }
+.oc-term[data-elem="yan"]  { --term: #ffa463; }
+.oc-term[data-elem="lei"]  { --term: #ff6fe2; }
+.oc-term[data-elem="cao"]  { --term: #7dff9b; }
+.oc-term[data-elem="shui"] { --term: #64b9ff; }
+.oc-term[data-elem="huo"]  { --term: #ff6b6b; }
+.oc-term[data-elem="bing"] { --term: #86ecff; }
+
+.oc-term[data-elem] {
+    text-shadow: 0 0 12px rgba(255, 255, 255, .10);
 }
 
 /* 「普通攻击介绍」里的 普通攻击 / 重击 / 下落攻击 小标签 */
