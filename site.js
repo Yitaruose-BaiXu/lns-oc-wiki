@@ -101,6 +101,18 @@
         '•下落攻击'
     ];
 
+    /* 元素专属术语：按元素分组，key 对应 .gejianN（1风 2岩 3雷 4草 5水 6火 7冰）
+       把「属性名词」写进对应数组即可自动上该元素的颜色 */
+    var OC_ELEMENT_TERMS = {
+        feng: ['风元素', '范围风元素伤害', '风元素伤害', '风元素范围伤害', '风元素附魔'],
+        yan:  ['岩元素', '范围岩元素伤害', '岩元素伤害', '岩元素范围伤害', '岩元素附魔'],
+        lei:  ['雷元素', '范围雷元素伤害', '雷元素伤害', '雷元素范围伤害', '雷元素附魔'],
+        cao:  ['草元素', '范围草元素伤害', '草元素伤害', '草元素范围伤害', '草元素附魔'],
+        shui: ['水元素', '范围水元素伤害', '水元素伤害', '水元素范围伤害', '水元素附魔'],
+        huo:  ['火元素', '范围火元素伤害', '火元素伤害', '火元素范围伤害', '火元素附魔'],
+        bing: ['冰元素', '范围冰元素伤害', '冰元素伤害', '冰元素范围伤害', '冰元素附魔']
+    };
+
     /* ------------------------------ 小工具 ------------------------------ */
     function all(selector, ctx) {
         return Array.prototype.slice.call((ctx || d).querySelectorAll(selector));
@@ -239,7 +251,7 @@
 
         /* 详情页没有同名导航项时，按所在文件夹点亮所属栏目 */
         if (!matched && navLinks.length) {
-            var sections = ['jueseku', 'wuqi', 'shengyiwu', 'wupin'];
+            var sections = ['jueseku', 'wuqi', 'shengyiwu', 'wupin', 'chengjiu'];
             var parts = here.split('/');
             for (var i = 0; i < sections.length; i += 1) {
                 if (parts.indexOf(sections[i]) !== -1) {
@@ -608,10 +620,23 @@
     }
 
     /* ---------------- 10. 专有名词高亮（技能 / 状态名） ---------------- */
-    function setupTerms() {
-        if (!OC_TERMS.length) { return; }
+    function normalizeTerm(term) {
+        return term.replace(/[·・]/g, '•');
+    }
 
-        var pattern = OC_TERMS
+    function setupTerms() {
+        var list = OC_TERMS.slice();
+        var elemOf = {};
+
+        Object.keys(OC_ELEMENT_TERMS).forEach(function (key) {
+            OC_ELEMENT_TERMS[key].forEach(function (term) {
+                list.push(term);
+                elemOf[normalizeTerm(term)] = key;
+            });
+        });
+        if (!list.length) { return; }
+
+        var pattern = list
             .slice()
             .sort(function (a, b) { return b.length - a.length; })
             .map(function (term) {
@@ -647,7 +672,10 @@
                     if (m.index > last) {
                         frag.appendChild(d.createTextNode(text.slice(last, m.index)));
                     }
-                    frag.appendChild(make('span', 'oc-term', m[0]));
+                    var span = make('span', 'oc-term', m[0]);
+                    var elem = elemOf[normalizeTerm(m[0])];
+                    if (elem) { span.setAttribute('data-elem', elem); }
+                    frag.appendChild(span);
                     last = m.index + m[0].length;
                 }
                 if (last < text.length) {
